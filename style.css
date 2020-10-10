@@ -1,11 +1,18 @@
 #list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
 }
 #list li {
-    cursor: pointer;
+  cursor: pointer;
 }
 #list li:hover {
 }
 
 #description {
-    display: none;
+  display: none;
+}
+
+#description.show {
+  display: block;
 }

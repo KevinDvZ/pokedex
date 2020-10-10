@@ -18,7 +18,8 @@ function transformToJson (response) {
  * Clear the list of all its items
  */
 function emptyList () {
-    // ...
+    list.innerHTML = "";
+ 
 }
 
 /**
@@ -27,9 +28,29 @@ function emptyList () {
 function createItem (pokemon) {
     // Create a li tag
     const item = document.createElement("li");
-    // ...
+    const image = document.createElement("img");
+    
+    
     fetch(pokemon.url).then(transformToJson).then((data) => {
-        // ...
+            
+        //console.log(item);
+
+        item.innerHTML = data.name;
+        list.appendChild(item);
+
+        image.setAttribute("src", data.sprites.front_default);
+        item.appendChild(image);
+
+        console.log(image);
+       
+       
+        item.appendChild(weight);
+
+        
+       
+       
+        
+    //console.log(item);
     });
 }
 
@@ -46,6 +67,9 @@ function fillList (json) {
  */
 function showDescription (data) {
     description.classList.add("show");
+    var name = Element.getElementById(name);
+    name.InnerHtml= data.name;
+
 
     const fields = description.querySelectorAll("dd");
     fields.forEach((dd) => {
