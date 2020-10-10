@@ -50,7 +50,7 @@ Ici, le noeud list est unique dans la page HTML du pokédex, c'est celui avec l'
 
 _Plus de détails sur les éléments :_ [OPENCLASSROOM](https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577476-accedez-aux-elements-du-dom)
 
-[TUTO COMPLET SUR LES NOEUDS PAR ICI](https://www.gchagnon.fr/cours/dhtml/introdom.html#quoinoeud)
+_Très complet :_[TUTO COMPLET SUR LES NOEUDS PAR ICI](https://www.gchagnon.fr/cours/dhtml/introdom.html#quoinoeud)
 
 Apparté : La déclaration const permet de créer une constante nommée accessible uniquement en lecture. Mais attention, le terme peut être trompeur : cela ne signifie pas que la valeur contenue est immuable, **uniquement que l'identifiant ne peut pas être réaffecté** (en l'occurence _list_ ici). Autrement dit la valeur d'une constante ne peut pas être modifiée par des réaffectations ultérieures. Une constante ne peut pas être déclarée à nouveau.
 
@@ -58,4 +58,4 @@ Plus concrètement, on ne pourra pas mettre un autre element dans la variable li
 
 ### Créer un noeud dans une variable
 
-`document.createElement("li")`
+`const variable =document.createElement("nomdelelement")`
