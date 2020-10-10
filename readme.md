@@ -1,13 +1,13 @@
-# Pokedex
+# Pokédex : les pas à pas d'un débutant en JS pour parvenir à la fin de l'exercice.
 
-Base pour la création d'un pokédex interactif, premier exercice Javascript au sein de Simplon.
+Bases pour la création d'un pokédex interactif, premier exercice Javascript au sein de l'école Simplon.
 Dans le but de maîtriser au mieux les bases de Javascript, j'ai décidé aussi d'apposer mes notes dans le markdown de ce projet.
 
 Ce document est écrit en collaboration avec Elodie.
 
-Par soucis de confort, j'ai abrégé Javascript en JS.
+Par soucis de rapidité, j'ai abrégé Javascript en JS.
 
-Le langage, les termes peuvent être erronés : ce mardown est la piste de réflexion d'un débutant total en JS. Il est quasi inévitable que ce document sera bourrés de fausses interprétations et d'erreurs. N'hésitez pas à le commenter, pour que je les corrige.
+Le langage, les termes, les expressions employés, ou les pistes de réflexion en elle même peuvent être erronés : ce markdown suis le cheminement des recherches pour parvenir à la fin de l'exercice. Il est quasi inévitable que ce document sera bourrés de fausses interprétations et d'erreurs. N'hésitez pas à le commenter, pour que je les corrige.
 
 **Mes excuses pour les fôtes d'ortograf**
 
@@ -74,7 +74,7 @@ Dans toute la suite, **elt** désignera un élément que l'on aura au préalable
 
 Contrairement à la méthode **getAttribute()**, qui permet de retourner la valeur d'un attribut de nom donné, la propriété attributes renvoie à la collection complète des attributs d'un élément. Par exemple, si elt désigne l'élément img suivant, cette méthode renverra une liste constituée des nœuds src, alt, width et height (dans cet ordre) :.
 
-#### Accès aux nœuds enfants
+### Accès aux nœuds enfants
 
 On peut accéder à la liste des nœuds-enfants d'un élément donné. Pour cela, trois propriétés existent.
 
@@ -85,3 +85,40 @@ On peut accéder à la liste des nœuds-enfants d'un élément donné. Pour cela
 **elt.lastChild** renvoie le dernier nœud-enfant de l'élément elt.
 
 **elt.lastElementChild** renvoie le dernier élément-enfant de l'élément elt.
+
+## La modification de la page HTML
+
+Il est donc possible d'accéder à des nœuds particuliers dans un document HTML. Nous allons voir maintenant comment il est possible d'en modifier le contenu, d'en ajouter ou de supprimer des éléments.
+
+### Ce que l'on veut faire en premier dans le pokédex :
+
+Placer les noms et l'images des Pokémon dans des noeuds li qui se succéderont au sein du noeud ul de la page HTML.
+
+### Les étapes clés
+
+1. Récupérer le noeud visé (le noeud li) dans une variable que nous nommerons item
+2. Récupérer le texte que l'on veut y inclure en visant la donnée correspondante dans la base de donnée de l'API Pokémon, puis la placer dans le noeud li de item (possible en utilisant innerHTML)
+3. passer la variable dans "la moulinette JSON" (voir plus loin). Cette moulinette va modifier le noeud visé dans la page HTML.
+4. Vider la variable.
+5. Revenir à l'étape 1 pour le prochain Pokémon
+6. Arrêter cette boucle quand les 151 pokémons sont renvoyé en se basant sur le endpoint renvoyé par l'API.
+
+Avant toute chose, il faut qu'on comprennent le fonctionnement de "la moulinette JSON", avec ses paramètres spécifiques, et comment ils s'utilisent.
+
+## Explication de Json
+
+JSON pour **JavaScript Object Notation** et c'est un format de données. Autrement dit, c'est une façon de stocker des informations, un peu comme une base de données. Bien que créé indépendamment de la spécification ECMAScript, il est maintenant lié à JavaScript qui inclut un objet JSON, et de nombreux développeurs l'incorporent quasiment comme un sous-ensemble du langage. Il est présent dans le traitement des données de l'api Pokémon et l'interaction avec les noeuds.
+
+Bien que trouvant sa source dans JavaScript, beaucoup de langages de programmation peuvent générer et lire le format JSON. Il est donc devenu très populaire pour le stockage, la lecture et le partage d'information dans les applications et services web.
+
+Voici un exemple de syntaxe JSON :
+
+`{ "espèce": "Dog", "race": "Labrador Retriever", "couleur": "Yellow", "âge": 6 }`
+
+Le nom de la variable est obligatoirement entre guillemets en JSON.
+
+JSON est un format de données consistant en paires de nom/valeur (ou clé/valeur) ayant la forme de chaînes de caractères. Les nom et valeur sont séparés par deux points : et chaque paire est séparée de la suivante par une virgule.
+
+C'est exactement le format que l'ont reçois dans la variable api, déclarée en haut du fichier JS. La liste des 151 Pokémon en mode json.
+
+Si on clique sur le lien et que l'on colle le contenu du json dans un interprétateur json, on peut voir les données de façon plus claire. [le site qui interprete ici](http://jsonviewer.stack.hu/) , [le texte json de la pokéapi à coller dans cet interpréteur](http://jsonviewer.stack.hu/)

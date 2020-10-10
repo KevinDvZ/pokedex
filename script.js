@@ -39,7 +39,7 @@ function createItem (pokemon) {
         list.appendChild(item);
 
         image.setAttribute("src", data.sprites.front_default);
-        item.appendChild(image);
+        list.appendChild(image);
 
         console.log(image);
        
