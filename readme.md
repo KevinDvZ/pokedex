@@ -36,18 +36,26 @@ On utilisera l'objet `Document.` pour créer des intéractions avec les noeuds. 
 
 Script permettant de récupérer toutes les "parties" de codes HTML présent dans la page ayant le id entré dans les parenthèses.Si on met une égalité avec variable devant, celà pose le contenu dans une variable. Dans le cas du pokédex, tout en haut du fichier JS, on a :
 
+### Choper un noeud du DOM
+
 `const list = document.getElementById("list");`
 
 Celà veut dire que l'on va chercher les balises < id=list> (il y en a qu'une dans la page HTML), et que l'on met son contenu dans la variable list.
 
-_ALERTE SUBTILITE :_ la variable ne contiendra pas que du simple texte. Ici c'est une variable qui contiendra une classe _Element_. L'élément est un objet avec ses propriétés et ses fonctions pour le manipuler, qui découlent du DOM.
+_ALERTE SUBTILITE :_ la variable ne contiendra pas que du simple texte. Ici c'est une variable qui contiendra une classe _Element_. **L'élément** est un objet avec ses propriétés et ses fonctions pour le manipuler, qui découlent du DOM.
 
-**Grossomodo un noeud du DOM = un élément.**
+**Grossomodo un noeud du DOM = un élément. Il comporte des caractéristique, ce n'est pas seulement les balises HTML**
 
 Ici, le noeud est unique dans la page HTML du pokédex, c'est celui avec l'id list, de type `<li>`.
 
 _Plus de détails sur les éléments :_ [OPENCLASSROOM](https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web/5577476-accedez-aux-elements-du-dom)
 
+[TUTO COMPLET SUR LES NOEUDS PAR ICI](https://www.gchagnon.fr/cours/dhtml/introdom.html#quoinoeud)
+
 Apparté : La déclaration const permet de créer une constante nommée accessible uniquement en lecture. Mais attention, le terme peut être trompeur : cela ne signifie pas que la valeur contenue est immuable, **uniquement que l'identifiant ne peut pas être réaffecté** (en l'occurence _list_ ici). Autrement dit la valeur d'une constante ne peut pas être modifiée par des réaffectations ultérieures. Une constante ne peut pas être déclarée à nouveau.
 
 Plus concrètement, on ne pourra pas mettre un autre element dans la variable list, mais on peut toujours modifier l'élément en lui même.
+
+###Créer un noeud dans une variable
+
+`document.createElement("li)`
