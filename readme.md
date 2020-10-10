@@ -30,7 +30,7 @@ Sur la doc en Mozilla, on retrouve toutes les fonctions JS qui permettent d'agir
 
 https://developer.mozilla.org/fr/docs/Web/API/Document
 
-On utilisera l'objet `Document.` pour créer des actions qui vont agir sur le DOM. Voici les scripts agissant ou interagissant sur le DOM qui vont nous servir pour la création du pokédex :
+On utilisera l'objet `Document.` pour créer des intéractions avec les noeuds. Voici les scripts liés à cet objet qui vont nous servir pour la création du pokédex :
 
 `document.getElementById("icijemetleIDdunebalisedelapageHTML");`
 
