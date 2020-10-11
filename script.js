@@ -1,6 +1,7 @@
 const list = document.getElementById("list");
 const description = document.getElementById("description");
 
+
 const api = "https://pokeapi.co/api/v2/pokemon?limit=150";
 
 /**
@@ -29,22 +30,32 @@ function emptyList () {
  * Create an item, fetch its data and setup event listener
  */
 function createItem (pokemon) {
-    // Create a li tag
-    console.log(pokemon);
-
+    
     
     const item = document.createElement("li");
     const image = document.createElement("img");
-    
-      
+    const name = document.createElement("p");
+   console.log(name);
+
+
+    name.innerHTML = pokemon.name;
+
+         
     fetch(pokemon.url).then(transformToJson).then((data) => {
             
-        item.innerText= pokemon.name
+        //console.log(name);
+        item.appendChild(image);
+        
+        image.setAttribute("src", data.sprites.front_default);
+        image.url= pokemon.url;
+        item.insertAdjacentElement('beforeend', name);
         list.appendChild(item);        
 
-        image.setAttribute("src", data.sprites.front_default);
-               
-        list.appendChild(image);
+       
+        item.url= pokemon.url;
+        item.onclick = showDescription;
+        
+        
     
     });
 }
@@ -61,24 +72,47 @@ function fillList (json) {
 /**
  * Fill and display the description
  */
-function showDescription (data) {
-    description.classList.add("show");
-    var name = Element.getElementById(name);
-    name.InnerHtml= data.name;
+//list.onclick = 
 
+function showDescription (data) {
+    
+    description.classList.add("show");
+    console.log(data);
+    //console.log(data.target.url);
+    const adresse = data.target.url
+    
+    description.firstElementChild.onclick = hideDescription;
 
     const fields = description.querySelectorAll("dd");
     fields.forEach((dd) => {
-        // ...
-    });
+        const info = dd.className
+
+        fetch(adresse).then(transformToJson).then((pokemon) => {
+        if (info == "types"){
+            for (const property in pokemon.types) {
+            dd.innerText = "Cool";
+            }
+        } else {
+             dd.innerText = pokemon[info];
+        }
+        });
+    
+})
 }
 
 /**
  * Hide the description
  */
+
+
 function hideDescription () {
     description.classList.remove("show");
+    const fields = description.querySelectorAll("dd");
+    fields.forEach((dd) => {
+        dd.innerText = "";
+ })
 }
 
-// Fetch the API end-point and fill the list
+
+//  Fetch the API end-point and fill the list
 fetch(api).then(transformToJson).then(fillList);

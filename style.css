@@ -1,13 +1,41 @@
+main {
+  margin-left: 15%;
+  background-color: rgb(92, 108, 201);
+}
+
+#titre {
+
+  display: block;
+  position: fixed;
+  width: 18%;
+  height: auto;
+  top: 0;
+  left: 0px;
+
+  background-color: rgb(92, 108, 201);
+
+}
 #list {
+  list-style-type: none;
   display: flex;
-  border: 5px ;
+  flex-direction: row;
   flex-wrap: wrap;
-  padding: 5px;*/
+  margin-top : 15px:
+}
+p {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#list img {
+  flex-direction: column;
 }
 #list li {
   cursor: pointer;
+  background-color: rebeccapurple;
 }
 #list li:hover {
+  background-color: black;
 }
 
 #description {
@@ -16,4 +44,22 @@
 
 #description.show {
   display: block;
+  position: fixed;
+  width: 18%;
+  height: auto;
+  top: 25%;
+  left: 0px;
+
+  background-color: rgb(92, 108, 201);
+}
+
+dl {
+  margin-left: 10%;
+}
+
+footer {
+  width: 100%;
+}
+
+#titre {
 }
