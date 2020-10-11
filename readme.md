@@ -19,6 +19,12 @@ Dans la page html, au bas du body,juste après le main, il faut appeler notre sc
 
 Dans le projet, il y a un fichier avec l'extension .js qui contient tous nos script écrit en JS. Ce bout de code permet de l'activer dans la page. Il est en général préférable de placer cet appel toujours à cet endroit du html.
 
+## LES APIS
+
+JS fonctionne avec des api directement appelable de base. Celle de Pokémon n'est pas de base, il faut l'apeller. Voici la liste des api atteignable.
+
+[LISTE API](https://developer.mozilla.org/fr/docs/Web/API)
+
 ## LE DOM
 
 Le _DOM_ est une représentation du document HTML source. Il s’agit pour l'essentiel d’une conversion de la structure et du contenu du document HTML en **un modèle objet utilisable par divers programmes** (dans notre cas, JS) .
@@ -97,11 +103,12 @@ Placer les noms et l'images des Pokémon dans des noeuds li qui se succéderont 
 ### Les étapes clés
 
 1. Récupérer le noeud visé (le noeud li) dans une variable que nous nommerons item
-2. Récupérer le texte que l'on veut y inclure en visant la donnée correspondante dans la base de donnée de l'API Pokémon, puis la placer dans le noeud li de item (possible en utilisant innerHTML)
-3. passer la variable dans "la moulinette JSON" (voir plus loin). Cette moulinette va modifier le noeud visé dans la page HTML.
-4. Vider la variable.
-5. Revenir à l'étape 1 pour le prochain Pokémon
-6. Arrêter cette boucle quand les 151 pokémons sont renvoyé en se basant sur le endpoint renvoyé par l'API.
+2. Récupérer le texte que l'on veut y inclure en visant la donnée correspondante dans la base de donnée de l'API Pokémon
+3. passer la variable dans "la moulinette JSON" (voir plus loin).
+4. placer le json dans le noeud li de item (possible en utilisant innerHTML)
+5. Vider la variable.
+6. Revenir à l'étape 1 pour le prochain Pokémon
+7. Arrêter cette boucle quand les 151 pokémons sont renvoyé en se basant sur le endpoint renvoyé par l'API.
 
 Avant toute chose, il faut qu'on comprennent le fonctionnement de "la moulinette JSON", avec ses paramètres spécifiques, et comment ils s'utilisent.
 
@@ -121,4 +128,4 @@ JSON est un format de données consistant en paires de nom/valeur (ou clé/valeu
 
 C'est exactement le format que l'ont reçois dans la variable api, déclarée en haut du fichier JS. La liste des 151 Pokémon en mode json.
 
-Si on clique sur le lien et que l'on colle le contenu du json dans un interprétateur json, on peut voir les données de façon plus claire. [le site qui interprete ici](http://jsonviewer.stack.hu/) , [le texte json de la pokéapi à coller dans cet interpréteur](http://jsonviewer.stack.hu/)
+Si on clique sur le lien et que l'on colle le contenu du json dans un interprétateur json, on peut voir les données de façon plus claire. [le site qui interprete ici](http://jsonviewer.stack.hu/) , [le texte json de la pokéapi à coller dans cet interpréteur](https://pokeapi.co/api/v2/pokemon?limit=150)

@@ -9,10 +9,12 @@ const api = "https://pokeapi.co/api/v2/pokemon?limit=150";
 function transformToJson (response) {
     if (response.ok) {
         return response.json();
+        
     }
 
     throw Error("Content not loaded");
 }
+
 
 /**
  * Clear the list of all its items
@@ -27,26 +29,23 @@ function emptyList () {
  */
 function createItem (pokemon) {
     // Create a li tag
+    
     const item = document.createElement("li");
     const image = document.createElement("img");
     
     
     fetch(pokemon.url).then(transformToJson).then((data) => {
             
-        //console.log(item);
+        //console.log(pokemon);
 
-        item.innerHTML = data.name;
+        //list.appendChild(data.name);
+        item.innerText = data.name;
         list.appendChild(item);
+        
 
         image.setAttribute("src", data.sprites.front_default);
-        list.appendChild(image);
-
-        console.log(image);
-       
-       
-        item.appendChild(weight);
-
-        
+        item.InnerHtml=image
+        list.appendChild(image)
        
        
         
@@ -59,7 +58,9 @@ function createItem (pokemon) {
  */
 function fillList (json) {
     emptyList();
+    //console.log(response);
     json.results.forEach(createItem);
+    console.log(json.results);
 }
 
 /**
