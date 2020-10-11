@@ -7,12 +7,13 @@ const api = "https://pokeapi.co/api/v2/pokemon?limit=150";
  * Try to parse a response as JSON data
  */
 function transformToJson (response) {
+    //console.log(response);
     if (response.ok) {
         return response.json();
         
     }
 
-    throw Error("Content not loaded");
+    throw Error("Pas possible de se connecter à l'API Pokémon");
 }
 
 
@@ -29,27 +30,22 @@ function emptyList () {
  */
 function createItem (pokemon) {
     // Create a li tag
+    console.log(pokemon);
+
     
     const item = document.createElement("li");
     const image = document.createElement("img");
     
-    
+      
     fetch(pokemon.url).then(transformToJson).then((data) => {
             
-        //console.log(pokemon);
-
-        //list.appendChild(data.name);
-        item.innerText = data.name;
-        list.appendChild(item);
-        
+        item.innerText= pokemon.name
+        list.appendChild(item);        
 
         image.setAttribute("src", data.sprites.front_default);
-        item.InnerHtml=image
-        list.appendChild(image)
-       
-       
-        
-    //console.log(item);
+               
+        list.appendChild(image);
+    
     });
 }
 
@@ -58,9 +54,8 @@ function createItem (pokemon) {
  */
 function fillList (json) {
     emptyList();
-    //console.log(response);
     json.results.forEach(createItem);
-    console.log(json.results);
+    
 }
 
 /**

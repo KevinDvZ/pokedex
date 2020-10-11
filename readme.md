@@ -25,6 +25,10 @@ JS fonctionne avec des api directement appelable de base. Celle de Pokémon n'es
 
 [LISTE API](https://developer.mozilla.org/fr/docs/Web/API)
 
+Pour l'exercice Pokémon,on utilisera :
+
+1. Le [DOM](https://developer.mozilla.org/fr/docs/Web/API/Document_Object_Model)
+
 ## LE DOM
 
 Le _DOM_ est une représentation du document HTML source. Il s’agit pour l'essentiel d’une conversion de la structure et du contenu du document HTML en **un modèle objet utilisable par divers programmes** (dans notre cas, JS) .
@@ -129,3 +133,55 @@ JSON est un format de données consistant en paires de nom/valeur (ou clé/valeu
 C'est exactement le format que l'ont reçois dans la variable api, déclarée en haut du fichier JS. La liste des 151 Pokémon en mode json.
 
 Si on clique sur le lien et que l'on colle le contenu du json dans un interprétateur json, on peut voir les données de façon plus claire. [le site qui interprete ici](http://jsonviewer.stack.hu/) , [le texte json de la pokéapi à coller dans cet interpréteur](https://pokeapi.co/api/v2/pokemon?limit=150)
+
+Dans l'exercice Pokédex, la fonction (que nous apellerons le fetch) :
+
+`fetch(api).then(transformToJson).then(fillList)`
+
+passe les données brutes renvoyé par l'api en JSON. Si l'on regarde ce que renvoie le lien, on a des données JSON brut qui renvoie qui donne la liste des noms (dans l'ensemble **name**) ainsi que du lien associé (ensemble **url**). la liste est contenu dans l'ensemble **results**.
+
+Si la moulinette JSON renvoie un résultat, ensuite (then), on emmène la promesse vers fillList.
+
+On ne décrira pas plus le fonctionnement de transformToJson, disons qu'il fait apellent à une fonction json() qui renvoie une promesse sous forme de Json. Ce fonction est lié à l'API DOM. [Plus de détails](https://devdocs.io/dom/body/json)
+
+## Les promesses en JavaScript, leur créations intrinsèques par le seul paramètre d'une fonction, et leur chaînage
+
+Si on écrit une fonction avec un paramètre d'entrée qui n'existe nulle part ailleurs dans le fichier JS, ce paramètre est considéré comme une promesse.
+
+La promesse attends un résultat pour "s'activer" et renvoyé son contenu en paramètres d'entrée de la fonction. Il est important de créer une promesse avec un nom clair; Dans notre exercice pokédex. Les promesses vont donc se renvoyé la balle par fonction interposés comme ceci.
+
+1. le fetch de l'api (`fetch(api)`) va renvoyé une réponse si la connexion est un succès. Cet réponse sera généré grâce à une Web API appelé [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response). Car oui : la PokéApi utilise d'autre API pour fonctionner. Cet réponse sera stocké dans la promesse du fetch. Elle même sera transféré dans la promesse de _transformToJson_ grâce au terme then.
+
+2. le tranformToJson a une promesse (_response_) en entrée qui attends donc la promesse du fetch. QUand c'est bon, la fonction s'active et va exploiter les données générée grâce à l'API Response. Par une condition if, on vérifie le booléen _ok_ propre au format de l'api response ([plus de détail](https://developer.mozilla.org/en-US/docs/Web/API/Response))
+
+Si le booléen est true on passe le contenu de cette promesse dans la moulinette json (cf plus haut), sinon on renvoie une erreur.
+
+Ensuite la fonction va renvoyé par la promesse response un contenu JSON. Par le then, ce contenu sera copié dans l'entrée de la promesse _pokemon_ de createItem grâce au then.
+
+3. Comme on a vu le json contient deux catégories : le nom et l'adresse web du pokémon.
+
+la promesse est exploitable, et deviens une variable dans la fonction. Au format JSON, le contenu de la promesse est exploitable par JS. Il suffit juste de taper par un point "le sous dossier" de la promesse.
+
+Ici donc : `pokemon.name` & `pokemon.url`
+
+Il serait tout à fait déjà possible d'injecter le nom dans un élément list, mais nous allons plutot exploiter l'url, qui contiendra toutes les infos, et permettera un chargement un poil plus rapide.
+
+4. On va jouer avec des variables et les remplir grâce aux méthodes. On en initialise 1 appelé item que l'on va "remplir" avec la méthode `Document.createElement`, qui permettera de poser les base de l'élément li.
+
+Ensuite, nous allons placer dans ce li le nom du pokémon. Pour celà, rien de tel qu'une égalité simple. Cette égalité se devra être dans la condition du fetch pokemon.url
+
+On ajoute donc :
+
+`item.innerHTML = pokemon.name`
+
+Il faut préciser quelle spécifité de item on veut remplir, et c'est le HTML, d'où le innerHTML. De plus ne pas oublier que item est une constante = faire une égalité directement sera impossible (cf plus haut).
+
+On "injecte" ensuite dans list l'élement entier li. N'oublions pas que **list** est un noeud. On va donc placer notre **item** en tant que noeuf enfant de list. On va utliser la fonction appendChild [plus de détail sur cette fonction du DOM](https://devdocs.io/dom/node/appendchild)
+
+On écrit donc en dessous :
+
+`list.appenChild(item)`
+
+La fonction touche ainsi à sa fin, la promesse est rempli et suis son cours (via le then)
+
+4. On boucle dans le fillList, car il y a un each qui va parcourir tout le results (qui rapellons le contient tous les pokémon par name + url)

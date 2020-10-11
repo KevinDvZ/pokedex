@@ -1,7 +1,8 @@
 #list {
   display: flex;
+  border: 5px ;
   flex-wrap: wrap;
-  padding: 5px;
+  padding: 5px;*/
 }
 #list li {
   cursor: pointer;
