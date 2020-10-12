@@ -185,3 +185,7 @@ On écrit donc en dessous :
 La fonction touche ainsi à sa fin, la promesse est rempli et suis son cours (via le then)
 
 4. On boucle dans le fillList, car il y a un each qui va parcourir tout le results (qui rapellons le contient tous les pokémon par name + url)
+
+## La liste est créée, passons à l'affichage des infos
+
+Le CSS permettera d'afficher ou non des infos grâce à l'apparition ou non de # spécifique dans les balises. En effet, du code HTML se trouve à la fin de la page.
