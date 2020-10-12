@@ -52,7 +52,7 @@ function createItem(pokemon) {
         list.appendChild(item);
 
 
-        item.url = pokemon.url;
+        //item.url = pokemon.url;
         item.addEventListener("click", () => {
             showDescription(data);
         })
@@ -79,8 +79,17 @@ function fillList(json) {
 function showDescription(data) {
 
     description.classList.add("show");
-
     const fields = description.querySelectorAll("dd");
+
+    const image = document.createElement("img")   
+    const imageFields = description.querySelector("img")
+    if ( imageFields != null){
+        imageFields.remove();
+    }
+    
+    image.setAttribute("src", data.sprites.other.dream_world.front_default);
+    
+    description.insertAdjacentElement("afterbegin",image);
 
     fields.forEach((dd) => {
         dd.innerText = "";
